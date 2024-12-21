@@ -12,8 +12,13 @@ const getAllCarsFromDB = async () => {
     const result = await CarModel.find({});
     return result
 };
+const getSIngleCarFromDB = async (id: string) => {
+    const result = await CarModel.findOne(id);
+    return result
+};
 
 export const CarServices = {
     createCarIntoDB,
-    getAllCarsFromDB
+    getAllCarsFromDB,
+    getSIngleCarFromDB
 };
