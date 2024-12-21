@@ -1,3 +1,4 @@
+import { stat } from "fs";
 import { CarServices } from "./car.service";
 import { Request, Response } from "express";
 
@@ -75,11 +76,30 @@ const updateCar = async (req: Request, res: Response) => {
             error
         })
     }
-}
+};
+
+const deleteCar = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.carId;
+        const result = await CarServices.deleteCarFromDB(id);
+        res.status(200).json({
+            status: true,
+            message: "car deleted successfully",
+            data: result || {}
+        })
+    } catch (error) {
+        res.status(500).json({
+            status: false,
+            message: "something went wrong",
+            error
+        })
+    }
+};
 
 export const CarController = {
     createCar,
     getAllCars,
     getSIngleCar,
-    updateCar
+    updateCar,
+    deleteCar
 };
