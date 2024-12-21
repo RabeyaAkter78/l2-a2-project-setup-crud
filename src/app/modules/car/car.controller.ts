@@ -55,10 +55,31 @@ const getSIngleCar = async (req: Request, res: Response) => {
             error
         })
     }
+};
+
+const updateCar = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.carId;
+        const carData = req.body;
+        console.log(id, carData, "controller")
+        const result = await CarServices.updateCarIntoDB(id, carData);
+        res.status(200).json({
+            result
+        })
+
+
+    } catch (error) {
+        res.status(500).json({
+            status: false,
+            message: "something went wrong",
+            error
+        })
+    }
 }
 
 export const CarController = {
     createCar,
     getAllCars,
     getSIngleCar,
+    updateCar
 };

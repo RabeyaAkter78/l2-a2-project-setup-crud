@@ -16,9 +16,31 @@ const getSIngleCarFromDB = async (id: string) => {
     const result = await CarModel.findOne(id);
     return result
 };
+const updateCarIntoDB = async (id: string, carData: Car) => {
+    console.log(id, carData)
+    try {
+        const result = await CarModel.findByIdAndUpdate(
+            id,
+            { $set: carData },
+            { new: true }
+        );
+        return {
+            status: true,
+            message: "car updated successfully",
+            data: result
+        };
+    } catch (error) {
+        return {
+            status: false,
+            message: "something went wrong",
+            error
+        };
+    }
+};
 
 export const CarServices = {
     createCarIntoDB,
     getAllCarsFromDB,
-    getSIngleCarFromDB
+    getSIngleCarFromDB,
+    updateCarIntoDB
 };
