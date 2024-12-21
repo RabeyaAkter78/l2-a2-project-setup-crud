@@ -1,10 +1,9 @@
 import { stat } from "fs";
 import { CarServices } from "./car.service";
 import { Request, Response } from "express";
-
 const createCar = async (req: Request, res: Response) => {
     try {
-        console.log(req.body);
+        // console.log(req.body);
         const carData = req.body;
         const result = await CarServices.createCarIntoDB(carData);
 

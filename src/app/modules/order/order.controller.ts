@@ -3,7 +3,7 @@ import { OrderServices } from "./order.service";
 import { Request, Response } from "express";
 const createOrder = async (req: Request, res: Response) => {
     try {
-        console.log(req.body);
+        // console.log(req.body);
         const orderData = req.body;
         const result = await OrderServices.createOrder(orderData);
         res.status(200).json({

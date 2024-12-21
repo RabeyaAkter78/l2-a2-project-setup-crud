@@ -13,7 +13,7 @@ const getAllCarsFromDB = async () => {
     return result
 };
 const getSIngleCarFromDB = async (id: string) => {
-    const result = await CarModel.findOne(id);
+    const result = await CarModel.findById(id);
     return result
 };
 const updateCarIntoDB = async (id: string, carData: Car) => {
