@@ -1,8 +1,25 @@
-import { app } from "./app"
+import app from "./app";
+import mongoose from "mongoose";
+import Config from "./app/config";
 
-const port = 5000;
+
+main().catch(err => console.log(err));
+
+async function main() {
+    try {
+        await mongoose.connect(Config.database_url as string);
+        console.log("database connected successfully");
 
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-  })
+
+        app.listen(5000, () => {
+            console.log(`Car Store listening on port ${Config.port}`);
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+
+
