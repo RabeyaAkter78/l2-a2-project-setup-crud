@@ -1,20 +1,18 @@
-import { stat } from "fs";
 import { CarModel } from "../car/car.models";
 import { Order } from "./order.interface";
 import { OrderModel } from "./order.models";
 
 const createOrder = async (orderData: Order) => {
     const carData = await CarModel.findById(orderData.car);
-
-    // console.log(carData, "carData");
     if (carData?.inStock === true) {
         const result = await OrderModel.create(orderData);
+
         if (result._id) {
             const updatedQuantity = carData.quantity - orderData.quantity;
-            const totalPrice = carData.price * orderData.quantity
+
             if (updatedQuantity === 0) {
                 await CarModel.findByIdAndUpdate(orderData.car, { quantity: updatedQuantity, inStock: false });
-                await CarModel.findByIdAndUpdate(orderData.car, { totalPrice: totalPrice, inStock: false });
+
             } else {
 
                 await CarModel.findByIdAndUpdate(orderData.car, { quantity: updatedQuantity });
@@ -26,11 +24,27 @@ const createOrder = async (orderData: Order) => {
         return {
             status: false,
             message: "out of stock"
-
         }
 
     }
+};
+
+
+const getRevinew = async () => {
+    const result = await OrderModel.aggregate([{
+        $group: {
+            _id: null,
+            totalPrice: {
+                $sum: "$totalPrice"
+
+            }
+        }
+    }])
+    return result
 }
+
+
 export const OrderServices = {
-    createOrder
+    createOrder,
+    getRevinew
 }

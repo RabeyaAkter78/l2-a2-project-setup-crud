@@ -20,6 +20,21 @@ const createOrder = async (req: Request, res: Response) => {
     }
 };
 
+const getRevinew = async (req: Request, res: Response) => {
+    try {
+        const result = await OrderServices.getRevinew()
+        res.status(200).json({
+            success: true,
+            message: "Revenue calculated successfully",
+            data: result
+        })
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const OrderController = {
-    createOrder
+    createOrder,
+    getRevinew
 };
