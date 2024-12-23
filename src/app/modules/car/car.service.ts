@@ -17,7 +17,6 @@ const getSIngleCarFromDB = async (id: string) => {
     return result
 };
 const updateCarIntoDB = async (id: string, carData: Car) => {
-
     try {
         const result = await CarModel.findByIdAndUpdate(
             id,
