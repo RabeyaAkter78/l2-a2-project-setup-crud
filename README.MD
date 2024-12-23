@@ -5,7 +5,7 @@
 # set-up Project :
 
 * Install : express , mongoose, typescript, dotenv ,cors
-* Create folder clled src on the root of the project and under src folder, create file-->  app.ts and server.ts ,
+* Create folder called src on the root of the project and under src folder, create file-->  app.ts and server.ts ,
 
 --> under src: create app folder.
 --> Under app: config and modules folder.
@@ -18,6 +18,8 @@
 
 
 on Car module: follow the rule: Interface -> models -> service ->  controller -> route 
+
+
 
 
 
