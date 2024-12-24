@@ -10,6 +10,10 @@ const app: Application = express()
 app.use(express.json());
 app.use(cors());
 
+app.get('/', (req:Request, res:Response) => {
+    res.send('hello')
+})
+
 // Application routes:
 app.use('/api/cars', CarRoutes);
 app.use('/api/orders', OrderRoutes)
