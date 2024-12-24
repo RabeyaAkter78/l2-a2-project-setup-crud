@@ -19,7 +19,54 @@
 
 on Car module: follow the rule: Interface -> models -> service ->  controller -> route 
 
+## Features:
 
+# Car:
+* frist i create service for all features functionality, then controller and then route.
+
+   * createCar -> craete(),
+
+   * getAllCars -> find(),
+   *  getSIngleCar -> findById(),
+   * updateCar -> findByIdAndUpdate(),
+   * deleteCar -> findByIdAndDelete()
+
+# Order:
+  * createOrder -> 
+  
+  --> if the car is available : findById(),
+  --> update the quantity : findByIdAndUpdate()
+  * getRevinew -->
+  aggregate([{
+        $group: {
+            _id: null,
+            totalPrice: {
+                $sum: "$totalPrice"
+
+            }
+        }
+    }])
+
+
+
+-----------------------------------
+## versel.json file for deploy:
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "src/server.ts",
+        "use": "@vercel/node",
+        "config": { "includeFiles": ["src/**/*.ts"] }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "src/server.ts"
+      }
+    ]
+  }
 
 
 
