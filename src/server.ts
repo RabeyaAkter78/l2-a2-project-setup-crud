@@ -6,9 +6,10 @@ import Config from "./app/config";
 main().catch(err => console.log(err));
 
 async function main() {
+    console.log(Config.database_url);
     try {
         await mongoose.connect(Config.database_url as string);
-        console.log("database connected successfully");
+        console.log("database connected successfully",);
         app.listen(5000, () => {
             console.log(`Car Store listening on port ${Config.port}`);
         })
